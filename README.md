@@ -1,1 +1,1 @@
-# car-rental-app
+# Car rental application
