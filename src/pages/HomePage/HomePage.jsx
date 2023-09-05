@@ -1,4 +1,4 @@
-import { Container } from './HomePage.styled';
+import { Container, NavigateLink } from './HomePage.styled';
 
 export default function HomePage() {
   return (
@@ -12,7 +12,8 @@ export default function HomePage() {
         transparent pricing, convenient pickup and drop-off options, and 24/7
         customer support.
       </p>
-      <a>Book Now</a>
+
+      <NavigateLink to="/catalog">Book Now</NavigateLink>
     </Container>
   );
 }

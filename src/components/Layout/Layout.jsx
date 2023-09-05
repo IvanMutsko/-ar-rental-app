@@ -5,9 +5,9 @@ import { Container } from './Layout.styled';
 export const Layout = () => {
   return (
     <Container>
-      <div as={Suspense} fallback={null}>
+      <Suspense>
         <Outlet />
-      </div>
+      </Suspense>
     </Container>
   );
 };
