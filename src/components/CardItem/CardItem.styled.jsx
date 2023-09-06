@@ -3,20 +3,22 @@ import styled from 'styled-components';
 export const CardWrap = styled.div`
   display: flex;
   width: 274px;
-  height: 426px;
   flex-direction: column;
   align-items: flex-start;
-  gap: 28px;
-  flex-shrink: 0;
+  justify-content: space-between;
 
-  outline: 1px solid orange;
+  margin-bottom: 50px;
+`;
+
+export const CardSubwrap = styled.div`
+  margin-bottom: 28px;
 `;
 
 export const ImageWrap = styled.div`
   position: relative;
   width: 274px;
-  height: 268px;
-  flex-shrink: 0;
+  min-height: 268px;
+  margin-bottom: 14px;
 
   overflow: hidden;
 
@@ -35,9 +37,9 @@ export const Image = styled.img`
   width: 100%;
 
   object-fit: cover;
-
-  flex-shrink: 0;
 `;
+
+export const AddFavoriteButton = styled.button``;
 
 export const Icon = styled.img`
   position: absolute;
@@ -53,6 +55,12 @@ export const Icon = styled.img`
 export const TitleWrap = styled.div`
   position: relative;
   width: 265px;
+`;
+
+export const DescriptionWrap = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
 `;
 
 export const Title = styled.h2`
@@ -73,6 +81,35 @@ export const Title = styled.h2`
   }
 `;
 
-export const DescriptionWrap = styled.div`
-  outline: 1px solid green;
+export const Description = styled.p`
+  color: rgba(18, 20, 23, 0.5);
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 1.5;
+`;
+
+export const CardButton = styled.button`
+  display: flex;
+  width: 274px;
+  height: 44px;
+  padding: 12px;
+  justify-content: center;
+  align-items: center;
+
+  border-color: transparent;
+
+  border-radius: 12px;
+  background: #3470ff;
+
+  color: #fff;
+  font-family: Manrope;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 1.43;
+
+  &:hover,
+  &:focus {
+    background: #0b44cd;
+  }
 `;

@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
-import { fetchAPI } from '../api/api';
-import { CardsList } from '../components/CardsList/CardsList';
+import { fetchAPI } from '../../api/api';
+import { CardsList } from '../../components/CardsList/CardsList';
+import { Container, LoadButton } from './CatalogPage.styled';
 
 export default function CatalogPage() {
   const [catalog, setCatalog] = useState([]);
@@ -20,9 +21,9 @@ export default function CatalogPage() {
   }, []);
 
   return (
-    <>
-      <h1>CatalogPage</h1>
+    <Container>
       <CardsList catalog={catalog} />
-    </>
+      <LoadButton type="button">Load more</LoadButton>
+    </Container>
   );
 }

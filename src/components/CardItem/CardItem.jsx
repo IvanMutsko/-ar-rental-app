@@ -1,12 +1,16 @@
 import PropTypes from 'prop-types';
 import {
   CardWrap,
+  CardSubwrap,
   ImageWrap,
   Image,
+  AddFavoriteButton,
   Icon,
+  DescriptionWrap,
   TitleWrap,
   Title,
-  DescriptionWrap,
+  Description,
+  CardButton,
 } from './CardItem.styled';
 
 import icon from '../../images/heart.svg';
@@ -41,19 +45,24 @@ export const CardItem = ({ cardData }) => {
 
   return (
     <CardWrap>
-      <ImageWrap>
-        <Image src={img} alt={`${make} ${model}`}></Image>
-        <Icon src={icon}></Icon>
-      </ImageWrap>
-      <div>
-        <TitleWrap>
-          <Title>
-            {make} <span className="accent">{model}</span>, {year}{' '}
-            <span className="price">{rentalPrice}</span>
-          </Title>
-        </TitleWrap>
-        <DescriptionWrap>{descrArr.join(' | ')}</DescriptionWrap>
-      </div>
+      <CardSubwrap>
+        <ImageWrap>
+          <Image src={img} alt={`${make} ${model}`}></Image>
+          <AddFavoriteButton type="button">
+            <Icon src={icon}></Icon>
+          </AddFavoriteButton>
+        </ImageWrap>
+        <DescriptionWrap>
+          <TitleWrap>
+            <Title>
+              {make} <span className="accent">{model}</span>, {year}{' '}
+              <span className="price">{rentalPrice}</span>
+            </Title>
+          </TitleWrap>
+          <Description>{descrArr.join(' | ')}</Description>
+        </DescriptionWrap>
+      </CardSubwrap>
+      <CardButton type="button">Learn more</CardButton>
     </CardWrap>
   );
 };

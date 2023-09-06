@@ -6,7 +6,7 @@ import { Layout } from './components/Layout/Layout';
 import './App.css';
 
 const HomePage = lazy(() => import('./pages/HomePage/HomePage'));
-const CatalogPage = lazy(() => import('./pages/CatalogPage'));
+const CatalogPage = lazy(() => import('./pages/CatalogPage/CatalogPage'));
 const FavoritesPage = lazy(() => import('./pages/FavoritesPage'));
 
 function App() {
