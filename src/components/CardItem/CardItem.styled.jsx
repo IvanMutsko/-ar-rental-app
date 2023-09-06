@@ -50,6 +50,11 @@ export const Icon = styled.img`
   right: 14px;
 `;
 
+export const TitleWrap = styled.div`
+  position: relative;
+  width: 265px;
+`;
+
 export const Title = styled.h2`
   color: #121417;
   font-family: Manrope;
@@ -61,4 +66,13 @@ export const Title = styled.h2`
   & .accent {
     color: #3470ff;
   }
+
+  & .price {
+    position: absolute;
+    right: 0;
+  }
+`;
+
+export const DescriptionWrap = styled.div`
+  outline: 1px solid green;
 `;

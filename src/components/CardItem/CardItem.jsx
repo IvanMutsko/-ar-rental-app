@@ -1,29 +1,58 @@
 import PropTypes from 'prop-types';
-import { CardWrap, ImageWrap, Image, Icon, Title } from './CardItem.styled';
+import {
+  CardWrap,
+  ImageWrap,
+  Image,
+  Icon,
+  TitleWrap,
+  Title,
+  DescriptionWrap,
+} from './CardItem.styled';
 
 import icon from '../../images/heart.svg';
 
 export const CardItem = ({ cardData }) => {
+  const {
+    address,
+    rentalCompany,
+    type,
+    model,
+    mileage,
+    functionalities,
+    img,
+    make,
+    rentalPrice,
+    year,
+  } = cardData;
+
+  const randomIndex = Math.floor(Math.random() * functionalities.length);
+
+  const descrArr = [
+    address.split(', ')[1],
+    address.split(', ')[2],
+    rentalCompany,
+    type,
+    model,
+    mileage,
+    functionalities[randomIndex],
+  ];
+
+  console.log(descrArr.join('|'));
+
   return (
     <CardWrap>
       <ImageWrap>
-        <Image
-          src={cardData.img}
-          alt={`${cardData.make} ${cardData.model}`}
-        ></Image>
+        <Image src={img} alt={`${make} ${model}`}></Image>
         <Icon src={icon}></Icon>
       </ImageWrap>
       <div>
-        <div>
+        <TitleWrap>
           <Title>
-            {cardData.make} <span className="accent">{cardData.model}</span>,{' '}
-            {cardData.year}
+            {make} <span className="accent">{model}</span>, {year}{' '}
+            <span className="price">{rentalPrice}</span>
           </Title>
-          <Title>{cardData.rentalPrice}</Title>
-              </div>
-              <div>
-                  
-              </div>
+        </TitleWrap>
+        <DescriptionWrap>{descrArr.join(' | ')}</DescriptionWrap>
       </div>
     </CardWrap>
   );
