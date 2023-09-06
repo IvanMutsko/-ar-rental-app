@@ -5,6 +5,7 @@ import { FilterBar } from '../../components/FilterBar/FilterBar';
 import { Container, LoadButton } from './CatalogPage.styled';
 
 export default function CatalogPage() {
+  const [startCatalog, setStartCatalog] = useState([]);
   const [catalog, setCatalog] = useState([]);
   const [visibleItems, setVisibleItems] = useState(8);
   const [filterValues, setFilterValues] = useState({});
@@ -13,6 +14,7 @@ export default function CatalogPage() {
     try {
       const fetchedCars = await fetchAPI();
       setCatalog(fetchedCars);
+      setStartCatalog(fetchedCars);
     } catch (error) {
       console.log(error);
     } finally {
@@ -37,7 +39,14 @@ export default function CatalogPage() {
           item.mileage <= filterValues.maxMileage)
       );
     });
+
     setCatalog(filteredCatalog);
+    console.log(startCatalog.length);
+    console.log(catalog.length);
+    // оновлення тыльки після другого сабміту, треба поправити
+    // if (startCatalog.length > catalog.length) {
+    //   console.log('qqweqweqweqe');
+    // }
   }, [filterValues]);
 
   const loadMoreItems = () => {
