@@ -8,7 +8,7 @@ import {
   FilterButton,
 } from './FilterBar.styled';
 
-export const FilterBar = ({ filterValues }) => {
+export const FilterBar = ({ filterValues, filterFn }) => {
   const filterData = e => {
     e.preventDefault();
 
@@ -48,4 +48,5 @@ export const FilterBar = ({ filterValues }) => {
 
 FilterBar.propTypes = {
   filterValues: PropTypes.func.isRequired,
+  filterFn: PropTypes.func.isRequired,
 };
