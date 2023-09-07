@@ -39,17 +39,31 @@ export const Image = styled.img`
   object-fit: cover;
 `;
 
-export const AddFavoriteButton = styled.button``;
-
-export const Icon = styled.img`
+export const AddFavoriteButton = styled.button`
   position: absolute;
-
-  width: 18px;
-  height: 18px;
-  flex-shrink: 0;
-
   top: 14px;
   right: 14px;
+
+  background-color: transparent;
+  border: none;
+
+  & .icon {
+    width: 18px;
+    height: 18px;
+    stroke: #fff;
+    fill: transparent;
+
+    &:hover,
+    &:focus {
+      stroke: #3470ff;
+      fill: #3470ff;
+    }
+
+    &.favorite {
+      stroke: #3470ff;
+      fill: #3470ff;
+    }
+  }
 `;
 
 export const TitleWrap = styled.div`

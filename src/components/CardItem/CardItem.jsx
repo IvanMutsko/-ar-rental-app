@@ -1,11 +1,12 @@
 import PropTypes from 'prop-types';
+import { useState, useEffect } from 'react';
+
 import {
   CardWrap,
   CardSubwrap,
   ImageWrap,
   Image,
   AddFavoriteButton,
-  Icon,
   DescriptionWrap,
   TitleWrap,
   Title,
@@ -16,7 +17,10 @@ import {
 import icon from '../../images/heart.svg';
 
 export const CardItem = ({ cardData }) => {
+  const [isFavorite, setIsFavorite] = useState('');
+
   const {
+    id,
     address,
     rentalCompany,
     type,
@@ -41,13 +45,41 @@ export const CardItem = ({ cardData }) => {
     functionalities[randomIndex],
   ];
 
+  const getFavoriteCars = () => {
+    const favoriteCarsString = localStorage.getItem('favoriteCars');
+    return favoriteCarsString ? JSON.parse(favoriteCarsString) : [];
+  };
+
+  const addFavorite = id => {
+    const favoriteCars = getFavoriteCars();
+    const indexOfId = favoriteCars.indexOf(id);
+
+    if (indexOfId !== -1) {
+      favoriteCars.splice(indexOfId, 1);
+      setIsFavorite('');
+    } else {
+      favoriteCars.push(id);
+      setIsFavorite('favorite');
+    }
+
+    localStorage.setItem('favoriteCars', JSON.stringify(favoriteCars));
+  };
+
+  useEffect(() => {
+    const favoriteCars = getFavoriteCars();
+    const indexOfId = favoriteCars.indexOf(id);
+    setIsFavorite(indexOfId !== -1 ? 'favorite' : '');
+  }, [id]);
+
   return (
     <CardWrap>
       <CardSubwrap>
         <ImageWrap>
           <Image src={img} alt={`${make} ${model}`}></Image>
-          <AddFavoriteButton type="button">
-            <Icon src={icon}></Icon>
+          <AddFavoriteButton type="button" onClick={() => addFavorite(id)}>
+            <svg className={`icon ${isFavorite}`}>
+              <use href={`${icon}#icon-heart`}></use>
+            </svg>
           </AddFavoriteButton>
         </ImageWrap>
         <DescriptionWrap>
