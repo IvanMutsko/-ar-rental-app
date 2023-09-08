@@ -51,9 +51,12 @@ export const ModalWindow = ({ currentCar, toggleModal }) => {
   const personAge = personeConditions[0].split(': ')[1];
 
   useEffect(() => {
+    document.body.classList.add('modal-open');
+
     const pressEsc = evt => {
       if (evt.code === 'Escape') {
         toggleModal();
+        document.body.classList.remove('modal-open');
       }
     };
 
@@ -67,6 +70,7 @@ export const ModalWindow = ({ currentCar, toggleModal }) => {
   const handleClick = evt => {
     if (evt.target === evt.currentTarget) {
       toggleModal();
+      document.body.classList.remove('modal-open');
     }
   };
 

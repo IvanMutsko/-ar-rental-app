@@ -5,6 +5,7 @@ export const Overlay = styled.div`
   top: 0;
   left: 0;
   width: 100%;
+  /* height: auto; */
   height: 100%;
   display: flex;
   justify-content: center;
@@ -14,11 +15,12 @@ export const Overlay = styled.div`
 `;
 
 export const Modal = styled.div`
-  position: absolute;
-  top: 150px;
-
+  margin-top: 150px;
+  margin-bottom: 150px;
   border-radius: 24px;
   background: #fff;
+
+  overflow-y: auto;
 `;
 
 export const CardWrap = styled.div`
