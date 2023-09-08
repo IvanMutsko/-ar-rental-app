@@ -13,31 +13,28 @@ export default function FavoritesPage({
   loadMoreItems,
 }) {
   const [favoriteCatalog, setFavoriteCatalog] = useState([]);
-
-  let favoriteId = [];
-
-  (() => {
-    const favoriteCarsString = localStorage.getItem('favoriteCars');
-    const arr = favoriteCarsString ? JSON.parse(favoriteCarsString) : [];
-    favoriteId = arr;
-  })();
+  const [favoriteId, setFavoriteId] = useState(null);
 
   useEffect(() => {
-    setFavoriteCatalog(
+    const favoriteCarsString = localStorage.getItem('favoriteCars');
+    const arr = favoriteCarsString ? JSON.parse(favoriteCarsString) : [];
+    setFavoriteId(arr);
 
+    const favoriteCars = [];
 
-      'тут треба зробити масив відфільтрований по улюбленим авто'
+    catalog.filter(item => {
+      if (favoriteId.includes(item.id)) {
+        favoriteCars.push(item);
+      }
+    });
 
-
-
-      
-    );
-  }, []);
+    setFavoriteCatalog(favoriteCars);
+  }, [catalog]);
 
   return (
     <Container>
       <FilterBar filterValues={setFilterValues} filterFn={filter} />
-      <CardsList catalog={catalog.slice(0, visibleItems)} />
+      <CardsList catalog={favoriteCatalog.slice(0, visibleItems)} />
       <LoadButton type="button" onClick={loadMoreItems}>
         Load more
       </LoadButton>
