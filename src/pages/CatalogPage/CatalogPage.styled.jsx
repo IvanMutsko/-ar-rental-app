@@ -4,7 +4,7 @@ export const Container = styled.div`
   display: flex;
   flex-direction: column;
 
-  padding: 150px 128px;
+  padding: 50px 128px 150px 128px;
 `;
 
 export const LoadButton = styled.button`

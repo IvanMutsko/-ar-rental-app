@@ -13,12 +13,12 @@ export default function FavoritesPage({
   loadMoreItems,
 }) {
   const [favoriteCatalog, setFavoriteCatalog] = useState([]);
-  const [favoriteId, setFavoriteId] = useState(null);
+  const [favoriteId, setFavoriteId] = useState([]);
+
+  const favoriteCarsString = JSON.parse(localStorage.getItem('favoriteCars'));
 
   useEffect(() => {
-    const favoriteCarsString = localStorage.getItem('favoriteCars');
-    const arr = favoriteCarsString ? JSON.parse(favoriteCarsString) : [];
-    setFavoriteId(arr);
+    setFavoriteId(favoriteCarsString);
 
     const favoriteCars = [];
 
