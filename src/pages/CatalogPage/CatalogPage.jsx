@@ -9,11 +9,17 @@ export default function CatalogPage({
   catalog,
   visibleItems,
   loadMoreItems,
+  toggleModal,
+  setCurrentCar,
 }) {
   return (
     <Container>
       <FilterBar filterValues={setFilterValues} filterFn={filter} />
-      <CardsList catalog={catalog.slice(0, visibleItems)} />
+      <CardsList
+        catalog={catalog.slice(0, visibleItems)}
+        toggleModal={toggleModal}
+        setCurrentCar={setCurrentCar}
+      />
       <LoadButton type="button" onClick={loadMoreItems}>
         Load more
       </LoadButton>
@@ -27,4 +33,6 @@ CatalogPage.propTypes = {
   catalog: PropTypes.array.isRequired,
   visibleItems: PropTypes.number.isRequired,
   loadMoreItems: PropTypes.func.isRequired,
+  toggleModal: PropTypes.func,
+  setCurrentCar: PropTypes.func,
 };

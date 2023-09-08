@@ -4,6 +4,7 @@ import { lazy } from 'react';
 import { Routes, Route, Navigate } from 'react-router-dom';
 
 import { Layout } from './components/Layout/Layout';
+import { ModalWindow } from './components/ModalWindow/ModalWindow';
 
 import './App.css';
 
@@ -16,6 +17,8 @@ function App() {
   const [catalog, setCatalog] = useState([]);
   const [visibleItems, setVisibleItems] = useState(8);
   const [filterValues, setFilterValues] = useState({});
+  const [modalShow, setModalShow] = useState(false);
+  const [currentCar, setCurrentCar] = useState({});
 
   const fetchCatalog = async () => {
     try {
@@ -70,37 +73,51 @@ function App() {
     setVisibleItems(visibleItems + 8);
   };
 
+  const toggleModal = () => {
+    setModalShow(!modalShow);
+  };
+
   return (
-    <Routes>
-      <Route path="/" element={<Layout />}>
-        <Route index element={<HomePage />} />
-        <Route
-          path="/catalog"
-          element={
-            <CatalogPage
-              setFilterValues={setFilterValues}
-              filter={filter}
-              catalog={catalog}
-              visibleItems={visibleItems}
-              loadMoreItems={loadMoreItems}
-            />
-          }
-        />
-        <Route
-          path="/favorites"
-          element={
-            <FavoritesPage
-              setFilterValues={setFilterValues}
-              filter={filter}
-              catalog={catalog}
-              visibleItems={visibleItems}
-              loadMoreItems={loadMoreItems}
-            />
-          }
-        />
-        <Route path="*" element={<Navigate to="/" />} />
-      </Route>
-    </Routes>
+    <>
+      <Routes>
+        <Route path="/" element={<Layout />}>
+          <Route index element={<HomePage />} />
+          <Route
+            path="/catalog"
+            element={
+              <CatalogPage
+                setFilterValues={setFilterValues}
+                filter={filter}
+                catalog={catalog}
+                visibleItems={visibleItems}
+                loadMoreItems={loadMoreItems}
+                toggleModal={toggleModal}
+                setCurrentCar={setCurrentCar}
+              />
+            }
+          />
+          <Route
+            path="/favorites"
+            element={
+              <FavoritesPage
+                setFilterValues={setFilterValues}
+                filter={filter}
+                catalog={catalog}
+                visibleItems={visibleItems}
+                loadMoreItems={loadMoreItems}
+              />
+            }
+          />
+          <Route path="*" element={<Navigate to="/" />} />
+        </Route>
+      </Routes>
+      {modalShow && (
+        <ModalWindow
+          toggleModal={toggleModal}
+          currentCar={currentCar}
+        ></ModalWindow>
+      )}
+    </>
   );
 }
 

@@ -16,7 +16,7 @@ import {
 
 import icon from '../../images/heart.svg';
 
-export const CardItem = ({ cardData }) => {
+export const CardItem = ({ cardData, toggleModal, setCurrentCar }) => {
   const [isFavorite, setIsFavorite] = useState('');
 
   const {
@@ -92,11 +92,20 @@ export const CardItem = ({ cardData }) => {
           <Description>{descrArr.join(' | ')}</Description>
         </DescriptionWrap>
       </CardSubwrap>
-      <CardButton type="button">Learn more</CardButton>
+      <CardButton
+        type="button"
+        onClick={() => {
+          toggleModal();
+          setCurrentCar(cardData);
+        }}
+      >
+        Learn more
+      </CardButton>
     </CardWrap>
   );
 };
 
 CardItem.propTypes = {
   catalog: PropTypes.object,
+  toggleModal: PropTypes.func,
 };
