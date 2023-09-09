@@ -6,22 +6,23 @@ export const Overlay = styled.div`
   left: 0;
   width: 100%;
   height: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
   background: rgba(18, 20, 23, 0.5);
   z-index: 2;
+
+  overflow: auto;
 `;
 
 export const Modal = styled.div`
-  margin-top: 150px;
-  margin-bottom: 150px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+  margin: 0 auto;
   border-radius: 24px;
   background: #fff;
 
-  overflow-y: auto;
-
-  /* РОЗІБРАТИСЬ ЗІ СКРОЛОМ */
+  z-index: 3;
 `;
 
 export const CardWrap = styled.div`
