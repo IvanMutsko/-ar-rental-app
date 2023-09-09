@@ -20,6 +20,12 @@ function App() {
   const [modalShow, setModalShow] = useState(false);
   const [currentCar, setCurrentCar] = useState({});
 
+  const favoriteCarsString = localStorage.getItem('favoriteCars');
+
+  if (!favoriteCarsString) {
+    localStorage.setItem('favoriteCars', JSON.stringify([]));
+  }
+
   const fetchCatalog = async () => {
     try {
       const fetchedCars = await fetchAPI();

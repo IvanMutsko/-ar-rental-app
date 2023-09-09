@@ -1,6 +1,7 @@
 import PropTypes from 'prop-types';
 import React, { useEffect } from 'react';
 import icon from '../../images/sprite.svg';
+import { formatNumber } from '../../helpers/formaterNumber';
 import {
   Overlay,
   Modal,
@@ -19,6 +20,8 @@ import {
   CardButton,
   CloseButton,
 } from './ModalWindow.styled';
+
+const phoneNumber = '+380730000000';
 
 export const ModalWindow = ({ currentCar, toggleModal }) => {
   const {
@@ -119,14 +122,14 @@ export const ModalWindow = ({ currentCar, toggleModal }) => {
               <ConditionText>{personeConditions[1]}</ConditionText>
               <ConditionText>{personeConditions[2]}</ConditionText>
               <ConditionText>
-                Mileage: <span>{mileage}</span>
+                Mileage: <span>{formatNumber(mileage)}</span>
               </ConditionText>
               <ConditionText>
                 Price: <span>{rentalPrice.slice(1)}$</span>
               </ConditionText>
             </ConditionsWrap>
           </SubWrap>
-          <CardButton>Rental car</CardButton>
+          <CardButton href={`tel:${phoneNumber}`}>Rental car</CardButton>
         </CardWrap>
       </Modal>
     </Overlay>

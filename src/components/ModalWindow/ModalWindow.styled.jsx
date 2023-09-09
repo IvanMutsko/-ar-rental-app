@@ -180,13 +180,11 @@ export const ConditionText = styled.p`
   }
 `;
 
-export const CardButton = styled.button`
-  display: inline-flex;
+export const CardButton = styled.a`
   padding: 12px 50px;
   justify-content: center;
   align-items: center;
 
-  border-color: transparent;
   border-radius: 12px;
   background: #3470ff;
 
@@ -196,6 +194,7 @@ export const CardButton = styled.button`
   font-style: normal;
   font-weight: 600;
   line-height: 1.43;
+  text-decoration: none;
 
   &:hover,
   &:focus {
