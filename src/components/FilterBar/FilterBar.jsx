@@ -1,10 +1,11 @@
 import PropTypes from 'prop-types';
-
+import makes from '../../data/makes.json';
 import {
   Container,
   InputWrap,
   Label,
   Input,
+  Select,
   FilterButton,
 } from './FilterBar.styled';
 
@@ -15,7 +16,7 @@ export const FilterBar = ({ filterValues, filterFn }) => {
     const { brand, price, mileage, endMileage } = e.target;
 
     const values = {
-      make: brand.value.toLocaleLowerCase().trim(),
+      make: brand.value,
       rentalPrice: Number(price.value.trim()),
       minMileage: Number(mileage.value.trim()),
       maxMileage: Number(endMileage.value.trim()),
@@ -28,7 +29,14 @@ export const FilterBar = ({ filterValues, filterFn }) => {
     <Container onSubmit={filterData}>
       <InputWrap>
         <Label htmlFor="brand">Car brand</Label>
-        <Input type="text" id="brand" placeholder="Enter the text" />
+
+        <Select id="brand">
+          {makes.map(make => (
+            <option key={make} value={make !== 'All' ? make : ''}>
+              {make}
+            </option>
+          ))}
+        </Select>
       </InputWrap>
       <InputWrap>
         <Label htmlFor="price">Price/ 1 hour</Label>

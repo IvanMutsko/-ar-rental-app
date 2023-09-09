@@ -30,6 +30,23 @@ export const Label = styled.label`
   line-height: 1.28;
 `;
 
+
+export const Select = styled.select`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 32px;
+
+  border-radius: 14px;
+  background: #f7f7fb;
+  border-color: transparent;
+
+  &#brand {
+    padding: 14px 89px 14px 18px;
+    width: 224px;
+  }
+`;
+
 export const Input = styled.input`
   display: flex;
   justify-content: center;
