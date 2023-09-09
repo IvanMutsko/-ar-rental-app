@@ -1,6 +1,10 @@
 import PropTypes from 'prop-types';
 import { useState, useEffect } from 'react';
 
+import icon from '../../images/sprite.svg';
+import { getFavoriteCars } from '../../helpers/getFavoritesCars';
+import { addFavorite } from '../../helpers/toggleFavoriteCars';
+
 import {
   CardWrap,
   CardSubwrap,
@@ -13,8 +17,6 @@ import {
   Description,
   CardButton,
 } from './CardItem.styled';
-
-import icon from '../../images/sprite.svg';
 
 export const CardItem = ({ cardData, toggleModal, setCurrentCar }) => {
   const [isFavorite, setIsFavorite] = useState('');
@@ -45,26 +47,6 @@ export const CardItem = ({ cardData, toggleModal, setCurrentCar }) => {
     functionalities[randomIndex],
   ];
 
-  const getFavoriteCars = () => {
-    const favoriteCarsString = localStorage.getItem('favoriteCars');
-    return favoriteCarsString ? JSON.parse(favoriteCarsString) : [];
-  };
-
-  const addFavorite = id => {
-    const favoriteCars = getFavoriteCars();
-    const indexOfId = favoriteCars.indexOf(id);
-
-    if (indexOfId !== -1) {
-      favoriteCars.splice(indexOfId, 1);
-      setIsFavorite('');
-    } else {
-      favoriteCars.push(id);
-      setIsFavorite('favorite');
-    }
-
-    localStorage.setItem('favoriteCars', JSON.stringify(favoriteCars));
-  };
-
   useEffect(() => {
     const favoriteCars = getFavoriteCars();
     const indexOfId = favoriteCars.indexOf(id);
@@ -76,7 +58,10 @@ export const CardItem = ({ cardData, toggleModal, setCurrentCar }) => {
       <CardSubwrap>
         <ImageWrap>
           <Image src={img} alt={`${make} ${model}`}></Image>
-          <AddFavoriteButton type="button" onClick={() => addFavorite(id)}>
+          <AddFavoriteButton
+            type="button"
+            onClick={() => addFavorite(id, getFavoriteCars, setIsFavorite)}
+          >
             <svg className={`icon ${isFavorite}`}>
               <use href={`${icon}#icon-heart`}></use>
             </svg>

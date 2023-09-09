@@ -1,13 +1,14 @@
 import { useState, useEffect, useCallback } from 'react';
-import { fetchAPI } from './api/api';
 import { lazy } from 'react';
 import { Routes, Route, Navigate } from 'react-router-dom';
+import { fetchAPI } from './api/api';
+import { fetchCatalog } from './api/apiCalls';
+import { filterLogic } from './helpers/filterLogic';
+import { setLocalStorage } from 'helpers/setLocalStorage';
 
 import { Layout } from './components/Layout/Layout';
 import { ModalWindow } from './components/ModalWindow/ModalWindow';
 import { Loader } from 'components/Loader/Loader';
-
-import './App.css';
 
 const HomePage = lazy(() => import('./pages/HomePage/HomePage'));
 const CatalogPage = lazy(() => import('./pages/CatalogPage/CatalogPage'));
@@ -16,65 +17,20 @@ const FavoritesPage = lazy(() => import('./pages/FavoritesPage/FavoritesPage'));
 function App() {
   const [originalCatalog, setOriginalCatalog] = useState([]);
   const [catalog, setCatalog] = useState([]);
-  const [visibleItems, setVisibleItems] = useState(8);
+  const [visibleItems, setVisibleItems] = useState(1);
   const [filterValues, setFilterValues] = useState({});
   const [modalShow, setModalShow] = useState(false);
   const [currentCar, setCurrentCar] = useState({});
   const [loader, setLoader] = useState(false);
 
-  const favoriteCarsString = localStorage.getItem('favoriteCars');
-
-  if (!favoriteCarsString) {
-    localStorage.setItem('favoriteCars', JSON.stringify([]));
-  }
-
-  const fetchCatalog = async () => {
-    try {
-      setLoader(true);
-      const fetchedCars = await fetchAPI();
-
-      setCatalog(fetchedCars);
-      setOriginalCatalog(fetchedCars);
-    } catch (error) {
-      console.log(error);
-    } finally {
-      setLoader(false);
-    }
-  };
+  setLocalStorage();
 
   useEffect(() => {
-    fetchCatalog();
+    fetchCatalog(setLoader, fetchAPI, setCatalog, setOriginalCatalog);
   }, []);
 
   const filter = useCallback(() => {
-    let filteredArray = [...originalCatalog];
-
-    if (Object.keys(filterValues).length !== 0) {
-      if (filterValues.make !== '') {
-        filteredArray = filteredArray.filter(
-          item =>
-            item?.make?.toLowerCase() === filterValues?.make?.toLowerCase()
-        );
-      }
-      if (filterValues.rentalPrice !== 0) {
-        filteredArray = filteredArray.filter(
-          item =>
-            parseInt(item.rentalPrice.replace(/\D/g, ''), 10) <=
-            filterValues.rentalPrice
-        );
-      }
-      if (filterValues.minMileage !== 0) {
-        filteredArray = filteredArray.filter(
-          item => item.mileage >= filterValues.minMileage
-        );
-      }
-      if (filterValues.maxMileage !== 0) {
-        filteredArray = filteredArray.filter(
-          item => item.mileage <= filterValues.maxMileage
-        );
-      }
-    }
-
+    const filteredArray = filterLogic(originalCatalog, filterValues);
     setCatalog(filteredArray);
     setVisibleItems(8);
   }, [filterValues, originalCatalog]);

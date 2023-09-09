@@ -33,32 +33,32 @@ export const FilterBar = ({ filterValues, filterFn }) => {
     filterValues(values);
   };
 
-  const brandElement = document.getElementById('brand');
-
-  brandElement?.addEventListener('focus', () => {
+  const handleBrandSelectFocus = () => {
     setBrandSelectOpen(true);
-  });
+  };
 
-  brandElement?.addEventListener('change', () => {
+  const handleBrandSelectChange = () => {
     setBrandSelectOpen(false);
-  });
+  };
 
-  const priceElement = document.getElementById('price');
-
-  priceElement?.addEventListener('focus', () => {
+  const handlePriceSelectFocus = () => {
     setPriceSelectOpen(true);
-  });
+  };
 
-  priceElement?.addEventListener('change', () => {
+  const handlePriceSelectChange = () => {
     setPriceSelectOpen(false);
-  });
+  };
 
   return (
     <Container onSubmit={filterData}>
       <InputWrap>
         <Label htmlFor="brand">Car brand</Label>
         <SelectContainer>
-          <Select id="brand">
+          <Select
+            id="brand"
+            onFocus={handleBrandSelectFocus}
+            onChange={handleBrandSelectChange}
+          >
             {makes.map(make => (
               <option
                 key={make}
@@ -81,7 +81,11 @@ export const FilterBar = ({ filterValues, filterFn }) => {
       <InputWrap>
         <Label htmlFor="price">Price/ 1 hour</Label>
         <SelectContainer>
-          <Select id="price">
+          <Select
+            id="price"
+            onFocus={handlePriceSelectFocus}
+            onChange={handlePriceSelectChange}
+          >
             {priceRange.map(value => (
               <option
                 key={value}
