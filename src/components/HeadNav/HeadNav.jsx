@@ -1,5 +1,3 @@
-import { NavLink } from 'react-router-dom';
-
 import logo from '../../images/headlamp.png';
 
 import { Container, LogoImage, NavigateLink, LogoLink } from './HeadNav.styled';
