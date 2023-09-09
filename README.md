@@ -1,1 +1,1 @@
-# Car rental application
+# AutoGoRental

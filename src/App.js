@@ -46,7 +46,7 @@ function App() {
 
     if (filterValues.make !== '') {
       filteredArray = filteredArray.filter(
-        item => item?.make?.toLowerCase() === filterValues?.make?.toLowerCase()
+        item => item.make.toLowerCase() === filterValues.make.toLowerCase()
       );
     }
     if (filterValues.rentalPrice !== 0) {
@@ -71,9 +71,9 @@ function App() {
     setVisibleItems(8);
   };
 
-  // useEffect(() => {
-  //   filter();
-  // }, [filterValues, filter]);
+  useEffect(() => {
+    filter();
+  }, [filterValues]);
 
   const loadMoreItems = () => {
     setVisibleItems(visibleItems + 8);
