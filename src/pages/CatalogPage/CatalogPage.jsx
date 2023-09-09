@@ -1,7 +1,6 @@
 import PropTypes from 'prop-types';
 import { CardsList } from '../../components/CardsList/CardsList';
 import { FilterBar } from '../../components/FilterBar/FilterBar';
-import { Loader } from '../../components/Loader/Loader';
 import { Container, LoadButton } from './CatalogPage.styled';
 
 export default function CatalogPage({

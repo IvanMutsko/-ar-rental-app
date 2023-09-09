@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { fetchAPI } from './api/api';
 import { lazy } from 'react';
 import { Routes, Route, Navigate } from 'react-router-dom';
@@ -41,12 +41,12 @@ function App() {
     fetchCatalog();
   }, []);
 
-  const filter = () => {
+  const filter = useCallback(() => {
     let filteredArray = [...originalCatalog];
 
     if (filterValues.make !== '') {
       filteredArray = filteredArray.filter(
-        item => item.make.toLowerCase() === filterValues.make.toLowerCase()
+        item => item?.make?.toLowerCase() === filterValues?.make?.toLowerCase()
       );
     }
     if (filterValues.rentalPrice !== 0) {
@@ -69,11 +69,11 @@ function App() {
 
     setCatalog(filteredArray);
     setVisibleItems(8);
-  };
+  }, [filterValues, originalCatalog]);
 
   useEffect(() => {
     filter();
-  }, [filterValues]);
+  }, [filter]);
 
   const loadMoreItems = () => {
     setVisibleItems(visibleItems + 8);
