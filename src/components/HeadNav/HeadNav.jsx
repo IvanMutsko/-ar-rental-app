@@ -1,11 +1,15 @@
+import { NavLink } from 'react-router-dom';
+
 import logo from '../../images/headlamp.png';
 
-import { Container, LogoImage, NavigateLink } from './HeadNav.styled';
+import { Container, LogoImage, NavigateLink, LogoLink } from './HeadNav.styled';
 
 export const HeadNav = () => {
   return (
     <Container>
-      <LogoImage src={logo} />
+      <LogoLink to="/">
+        <LogoImage src={logo} />
+      </LogoLink>
 
       <NavigateLink to="/">Home</NavigateLink>
       <NavigateLink to="/catalog">Catalog</NavigateLink>

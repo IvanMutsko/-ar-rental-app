@@ -1,17 +1,10 @@
 import styled from 'styled-components';
 import { NavLink } from 'react-router-dom';
 
-import autoImg from '../../images/auto-home.png';
-
 export const Container = styled.div`
   height: 100vh;
 
   padding: 90px 150px;
-
-  background-image: url('${autoImg}');
-  background-size: 900px;
-  background-position: 100% 100%;
-  background-repeat: no-repeat;
 `;
 
 export const Title = styled.h1`
@@ -56,4 +49,8 @@ export const NavigateLink = styled(NavLink)`
   &:focus {
     background: #0b44cd;
   }
+`;
+
+export const Image = styled.img`
+  margin-left: auto;
 `;

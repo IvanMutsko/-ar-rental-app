@@ -1,4 +1,6 @@
-import { Container, NavigateLink, Title, Text } from './HomePage.styled';
+import autoImg from '../../images/auto-home.png';
+
+import { Container, NavigateLink, Title, Text, Image } from './HomePage.styled';
 
 export default function HomePage() {
   return (
@@ -12,8 +14,8 @@ export default function HomePage() {
         transparent pricing, convenient pickup and drop-off options, and 24/7
         customer support.
       </Text>
-
       <NavigateLink to="/catalog">Book Now</NavigateLink>
+      <Image src={autoImg} alt="Automobiles"/>
     </Container>
   );
 }

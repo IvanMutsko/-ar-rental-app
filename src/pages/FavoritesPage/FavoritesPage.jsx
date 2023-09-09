@@ -3,7 +3,8 @@ import { useState, useEffect } from 'react';
 
 import { CardsList } from '../../components/CardsList/CardsList';
 import { FilterBar } from '../../components/FilterBar/FilterBar';
-import { Container, LoadButton } from './FavoritesPage.styled';
+import oopsImg from '../../images/oops.png';
+import { Container, LoadButton, Text, Image } from './FavoritesPage.styled';
 
 export default function FavoritesPage({
   setFilterValues,
@@ -26,14 +27,26 @@ export default function FavoritesPage({
   return (
     <Container>
       <FilterBar filterValues={setFilterValues} filterFn={filter} />
-      <CardsList
-        catalog={favoriteCatalog.slice(0, visibleItems)}
-        toggleModal={toggleModal}
-        setCurrentCar={setCurrentCar}
-      />
-      <LoadButton type="button" onClick={loadMoreItems}>
-        Load more
-      </LoadButton>
+      {favoriteCatalog.length === 0 ? (
+        <>
+          <Image src={oopsImg} alt="Oops, not cars" />
+          <Text>
+            You don't have any favorite cars yet, but you can choose them from
+            the catalog and add them to this list...
+          </Text>
+        </>
+      ) : (
+        <>
+          <CardsList
+            catalog={favoriteCatalog.slice(0, visibleItems)}
+            toggleModal={toggleModal}
+            setCurrentCar={setCurrentCar}
+          />
+          <LoadButton type="button" onClick={loadMoreItems}>
+            Load more
+          </LoadButton>
+        </>
+      )}
     </Container>
   );
 }

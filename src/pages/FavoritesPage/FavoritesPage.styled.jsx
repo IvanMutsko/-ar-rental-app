@@ -24,3 +24,16 @@ export const LoadButton = styled.button`
     color: #0b44cd;
   }
 `;
+
+export const Text = styled.p`
+  text-align: center;
+  font-size: 28px;
+  font-weight: 700;
+`;
+
+export const Image = styled.img`
+  margin-left: auto;
+  margin-right: auto;
+  width: 400px;
+  margin-bottom: 40px;
+`;

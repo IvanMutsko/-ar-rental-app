@@ -1,15 +1,23 @@
 import PropTypes from 'prop-types';
+import { useState } from 'react';
+
 import makes from '../../data/makes.json';
+import priceRange from '../../data/price.json';
+import icon from '../../images/sprite.svg';
 import {
   Container,
   InputWrap,
   Label,
   Input,
   Select,
+  SelectContainer,
   FilterButton,
 } from './FilterBar.styled';
 
 export const FilterBar = ({ filterValues, filterFn }) => {
+  const [brandSelectOpen, setBrandSelectOpen] = useState(false);
+  const [priceSelectOpen, setPriceSelectOpen] = useState(false);
+
   const filterData = e => {
     e.preventDefault();
 
@@ -25,22 +33,73 @@ export const FilterBar = ({ filterValues, filterFn }) => {
     filterValues(values);
   };
 
+  const brandElement = document.getElementById('brand');
+
+  brandElement?.addEventListener('focus', () => {
+    setBrandSelectOpen(true);
+  });
+
+  brandElement?.addEventListener('change', () => {
+    setBrandSelectOpen(false);
+  });
+
+  const priceElement = document.getElementById('price');
+
+  priceElement?.addEventListener('focus', () => {
+    setPriceSelectOpen(true);
+  });
+
+  priceElement?.addEventListener('change', () => {
+    setPriceSelectOpen(false);
+  });
+
   return (
     <Container onSubmit={filterData}>
       <InputWrap>
         <Label htmlFor="brand">Car brand</Label>
-
-        <Select id="brand">
-          {makes.map(make => (
-            <option key={make} value={make !== 'All' ? make : ''}>
-              {make}
-            </option>
-          ))}
-        </Select>
+        <SelectContainer>
+          <Select id="brand">
+            {makes.map(make => (
+              <option
+                key={make}
+                className="options-list"
+                value={make !== 'All' ? make : ''}
+              >
+                {make}
+              </option>
+            ))}
+          </Select>
+          <svg className="icon">
+            <use
+              href={`${icon}${
+                brandSelectOpen ? '#icon-chevron-top' : '#icon-chevron-down'
+              }`}
+            ></use>
+          </svg>
+        </SelectContainer>
       </InputWrap>
       <InputWrap>
         <Label htmlFor="price">Price/ 1 hour</Label>
-        <Input type="text" id="price" placeholder="To $" />
+        <SelectContainer>
+          <Select id="price">
+            {priceRange.map(value => (
+              <option
+                key={value}
+                className="options-list"
+                value={value !== '' ? value : ''}
+              >
+                To {value}$
+              </option>
+            ))}
+          </Select>
+          <svg className="icon">
+            <use
+              href={`${icon}${
+                priceSelectOpen ? '#icon-chevron-top' : '#icon-chevron-down'
+              }`}
+            ></use>
+          </svg>
+        </SelectContainer>
       </InputWrap>
       <InputWrap>
         <Label htmlFor="mileage">Сar mileage / km</Label>

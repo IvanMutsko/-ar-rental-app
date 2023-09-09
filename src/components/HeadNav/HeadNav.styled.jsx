@@ -26,10 +26,12 @@ export const Container = styled.header`
 `;
 
 export const LogoImage = styled.img`
+  width: 400px;
+`;
+
+export const LogoLink = styled(NavLink)`
   position: absolute;
   left: 120px;
-
-  width: 400px;
 `;
 
 export const NavigateLink = styled(NavLink)`

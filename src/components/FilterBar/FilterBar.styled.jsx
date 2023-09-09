@@ -30,6 +30,25 @@ export const Label = styled.label`
   line-height: 1.28;
 `;
 
+export const SelectContainer = styled.div`
+  position: relative;
+
+  & .icon {
+    position: absolute;
+    right: 18px;
+    top: 14px;
+
+    width: 20px;
+    height: 20px;
+
+    pointer-events: none;
+
+    &:hover,
+    &:focus {
+      background-color: red;
+    }
+  }
+`;
 
 export const Select = styled.select`
   display: flex;
@@ -37,13 +56,25 @@ export const Select = styled.select`
   align-items: center;
   gap: 32px;
 
+  height: 48px;
+
   border-radius: 14px;
   background: #f7f7fb;
   border-color: transparent;
+  appearance: none;
+
+  color: #121417;
+  font-size: 18px;
+  font-weight: 500;
 
   &#brand {
-    padding: 14px 89px 14px 18px;
+    padding: 14px 18px;
     width: 224px;
+  }
+
+  &#price {
+    padding: 14px 18px;
+    width: 125px;
   }
 `;
 
@@ -57,20 +88,14 @@ export const Input = styled.input`
   background: #f7f7fb;
   border-color: transparent;
 
-  &#brand {
-    padding: 14px 89px 14px 18px;
-    width: 224px;
-  }
-
-  &#price {
-    padding: 14px 18px;
-    width: 125px;
-  }
+  color: #121417;
+  font-size: 18px;
+  font-weight: 500;
 
   &#mileage {
     width: 160px;
     height: 48px;
-    padding: 14px 93px 14px 24px;
+    padding: 14px 24px 14px 24px;
 
     border-radius: 14px 0px 0px 14px;
     border-right: 1px solid rgba(138, 138, 137, 0.2);
@@ -80,7 +105,7 @@ export const Input = styled.input`
   &#endMileage {
     width: 160px;
     height: 48px;
-    padding: 14px 115px 14px 24px;
+    padding: 14px 24px 14px 24px;
 
     border-radius: 0px 14px 14px 0px;
     background: #f7f7fb;
