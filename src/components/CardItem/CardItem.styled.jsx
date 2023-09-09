@@ -67,7 +67,6 @@ export const AddFavoriteButton = styled.button`
 `;
 
 export const TitleWrap = styled.div`
-  position: relative;
   width: 265px;
 `;
 
@@ -78,6 +77,9 @@ export const DescriptionWrap = styled.div`
 `;
 
 export const Title = styled.h2`
+  display: flex;
+  justify-content: space-between;
+
   color: #121417;
   font-family: Manrope;
   font-size: 16px;
@@ -85,13 +87,17 @@ export const Title = styled.h2`
   font-weight: 500;
   line-height: 1.5;
 
+  & .make {
+    display: inline-block;
+  }
+
   & .accent {
     color: #3470ff;
   }
 
   & .price {
-    position: absolute;
-    right: 0;
+    padding-left: 12px;
+    display: inline-block;
   }
 `;
 

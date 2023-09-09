@@ -85,7 +85,9 @@ export const CardItem = ({ cardData, toggleModal, setCurrentCar }) => {
         <DescriptionWrap>
           <TitleWrap>
             <Title>
-              {make} <span className="accent">{model}</span>, {year}{' '}
+              <span className="make">
+                {make} <span className="accent">{model}</span>, {year}
+              </span>
               <span className="price">{rentalPrice}</span>
             </Title>
           </TitleWrap>
