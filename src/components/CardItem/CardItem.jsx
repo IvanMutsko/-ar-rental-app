@@ -14,7 +14,7 @@ import {
   CardButton,
 } from './CardItem.styled';
 
-import icon from '../../images/heart.svg';
+import icon from '../../images/sprite.svg';
 
 export const CardItem = ({ cardData, toggleModal, setCurrentCar }) => {
   const [isFavorite, setIsFavorite] = useState('');

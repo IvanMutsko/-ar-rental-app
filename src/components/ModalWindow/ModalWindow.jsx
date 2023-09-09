@@ -1,5 +1,6 @@
 import PropTypes from 'prop-types';
 import React, { useEffect } from 'react';
+import icon from '../../images/sprite.svg';
 import {
   Overlay,
   Modal,
@@ -16,6 +17,7 @@ import {
   ConditionsWrap,
   ConditionText,
   CardButton,
+  CloseButton,
 } from './ModalWindow.styled';
 
 export const ModalWindow = ({ currentCar, toggleModal }) => {
@@ -75,10 +77,20 @@ export const ModalWindow = ({ currentCar, toggleModal }) => {
     }
   };
 
+  const handleClose = () => {
+    toggleModal();
+    document.body.classList.remove('modal-open');
+  };
+
   return (
     <Overlay onClick={handleClick}>
       <Modal>
         <CardWrap>
+          <CloseButton type="button" onClick={() => handleClose()}>
+            <svg className="icon">
+              <use href={`${icon}#icon-close`}></use>
+            </svg>
+          </CloseButton>
           <ImageWrap>
             <Image src={img} alt={`${make} ${model}`} />
           </ImageWrap>

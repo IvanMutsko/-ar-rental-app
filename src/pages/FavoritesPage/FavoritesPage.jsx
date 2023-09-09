@@ -14,23 +14,14 @@ export default function FavoritesPage({
   toggleModal,
   setCurrentCar,
 }) {
-  const [favoriteCatalog, setFavoriteCatalog] = useState([]);
   const [favoriteId, setFavoriteId] = useState([]);
 
   useEffect(() => {
     const favoriteCarsString = JSON.parse(localStorage.getItem('favoriteCars'));
     setFavoriteId(favoriteCarsString);
+  }, [filter]);
 
-    const favoriteCars = [];
-
-    catalog.filter(item => {
-      if (favoriteId.includes(item.id)) {
-        favoriteCars.push(item);
-      }
-    });
-
-    setFavoriteCatalog(favoriteCars);
-  }, [catalog]);
+  const favoriteCatalog = catalog.filter(item => favoriteId.includes(item.id));
 
   return (
     <Container>

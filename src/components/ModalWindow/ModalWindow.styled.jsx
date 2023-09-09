@@ -5,7 +5,6 @@ export const Overlay = styled.div`
   top: 0;
   left: 0;
   width: 100%;
-  /* height: auto; */
   height: 100%;
   display: flex;
   justify-content: center;
@@ -26,6 +25,7 @@ export const Modal = styled.div`
 `;
 
 export const CardWrap = styled.div`
+  position: relative;
   display: flex;
   padding: 40px;
   width: 541px;
@@ -33,6 +33,26 @@ export const CardWrap = styled.div`
   flex-direction: column;
   align-items: flex-start;
   justify-content: space-between;
+`;
+
+export const CloseButton = styled.button`
+  position: absolute;
+  top: 16px;
+  right: 16px;
+
+  background-color: transparent;
+  border: none;
+
+  & .icon {
+    width: 24px;
+    height: 24px;
+    stroke: #121417;
+
+    &:hover,
+    &:focus {
+      stroke: #3470ff;
+    }
+  }
 `;
 
 export const ImageWrap = styled.div`
