@@ -21,6 +21,8 @@ export const Modal = styled.div`
   background: #fff;
 
   overflow-y: auto;
+
+  /* РОЗІБРАТИСЬ ЗІ СКРОЛОМ */
 `;
 
 export const CardWrap = styled.div`

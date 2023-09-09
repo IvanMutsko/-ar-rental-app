@@ -33,6 +33,6 @@ CatalogPage.propTypes = {
   catalog: PropTypes.array.isRequired,
   visibleItems: PropTypes.number.isRequired,
   loadMoreItems: PropTypes.func.isRequired,
-  toggleModal: PropTypes.func,
-  setCurrentCar: PropTypes.func,
+  toggleModal: PropTypes.func.isRequired,
+  setCurrentCar: PropTypes.func.isRequired,
 };

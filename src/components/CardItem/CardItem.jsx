@@ -106,6 +106,7 @@ export const CardItem = ({ cardData, toggleModal, setCurrentCar }) => {
 };
 
 CardItem.propTypes = {
-  catalog: PropTypes.object,
-  toggleModal: PropTypes.func,
+  cardData: PropTypes.object.isRequired,
+  toggleModal: PropTypes.func.isRequired,
+  setCurrentCar: PropTypes.func.isRequired,
 };

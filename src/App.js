@@ -105,6 +105,8 @@ function App() {
                 catalog={catalog}
                 visibleItems={visibleItems}
                 loadMoreItems={loadMoreItems}
+                toggleModal={toggleModal}
+                setCurrentCar={setCurrentCar}
               />
             }
           />

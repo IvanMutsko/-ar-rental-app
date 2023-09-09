@@ -11,13 +11,14 @@ export default function FavoritesPage({
   catalog,
   visibleItems,
   loadMoreItems,
+  toggleModal,
+  setCurrentCar,
 }) {
   const [favoriteCatalog, setFavoriteCatalog] = useState([]);
   const [favoriteId, setFavoriteId] = useState([]);
 
-  const favoriteCarsString = JSON.parse(localStorage.getItem('favoriteCars'));
-
   useEffect(() => {
+    const favoriteCarsString = JSON.parse(localStorage.getItem('favoriteCars'));
     setFavoriteId(favoriteCarsString);
 
     const favoriteCars = [];
@@ -34,7 +35,11 @@ export default function FavoritesPage({
   return (
     <Container>
       <FilterBar filterValues={setFilterValues} filterFn={filter} />
-      <CardsList catalog={favoriteCatalog.slice(0, visibleItems)} />
+      <CardsList
+        catalog={favoriteCatalog.slice(0, visibleItems)}
+        toggleModal={toggleModal}
+        setCurrentCar={setCurrentCar}
+      />
       <LoadButton type="button" onClick={loadMoreItems}>
         Load more
       </LoadButton>
@@ -48,4 +53,6 @@ FavoritesPage.propTypes = {
   catalog: PropTypes.array.isRequired,
   visibleItems: PropTypes.number.isRequired,
   loadMoreItems: PropTypes.func.isRequired,
+  toggleModal: PropTypes.func.isRequired,
+  setCurrentCar: PropTypes.func.isRequired,
 };

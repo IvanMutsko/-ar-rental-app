@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import React, { useEffect } from 'react';
 import {
   Overlay,
@@ -118,4 +119,9 @@ export const ModalWindow = ({ currentCar, toggleModal }) => {
       </Modal>
     </Overlay>
   );
+};
+
+ModalWindow.propTypes = {
+  currentCar: PropTypes.object.isRequired,
+  toggleModal: PropTypes.func.isRequired,
 };
