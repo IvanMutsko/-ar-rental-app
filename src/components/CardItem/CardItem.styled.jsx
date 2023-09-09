@@ -7,7 +7,7 @@ export const CardWrap = styled.div`
   align-items: flex-start;
   justify-content: space-between;
 
-  margin-bottom: 50px;
+  margin-bottom: 21px;
 `;
 
 export const CardSubwrap = styled.div`
