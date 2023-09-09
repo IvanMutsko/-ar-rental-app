@@ -5,6 +5,7 @@ import { Routes, Route, Navigate } from 'react-router-dom';
 
 import { Layout } from './components/Layout/Layout';
 import { ModalWindow } from './components/ModalWindow/ModalWindow';
+import { Loader } from 'components/Loader/Loader';
 
 import './App.css';
 
@@ -19,6 +20,7 @@ function App() {
   const [filterValues, setFilterValues] = useState({});
   const [modalShow, setModalShow] = useState(false);
   const [currentCar, setCurrentCar] = useState({});
+  const [loader, setLoader] = useState(false);
 
   const favoriteCarsString = localStorage.getItem('favoriteCars');
 
@@ -28,12 +30,15 @@ function App() {
 
   const fetchCatalog = async () => {
     try {
+      setLoader(true);
       const fetchedCars = await fetchAPI();
+
       setCatalog(fetchedCars);
       setOriginalCatalog(fetchedCars);
     } catch (error) {
       console.log(error);
     } finally {
+      setLoader(false);
     }
   };
 
@@ -44,27 +49,30 @@ function App() {
   const filter = useCallback(() => {
     let filteredArray = [...originalCatalog];
 
-    if (filterValues.make !== '') {
-      filteredArray = filteredArray.filter(
-        item => item?.make?.toLowerCase() === filterValues?.make?.toLowerCase()
-      );
-    }
-    if (filterValues.rentalPrice !== 0) {
-      filteredArray = filteredArray.filter(
-        item =>
-          parseInt(item.rentalPrice.replace(/\D/g, ''), 10) <=
-          filterValues.rentalPrice
-      );
-    }
-    if (filterValues.minMileage !== 0) {
-      filteredArray = filteredArray.filter(
-        item => item.mileage >= filterValues.minMileage
-      );
-    }
-    if (filterValues.maxMileage !== 0) {
-      filteredArray = filteredArray.filter(
-        item => item.mileage <= filterValues.maxMileage
-      );
+    if (Object.keys(filterValues).length !== 0) {
+      if (filterValues.make !== '') {
+        filteredArray = filteredArray.filter(
+          item =>
+            item?.make?.toLowerCase() === filterValues?.make?.toLowerCase()
+        );
+      }
+      if (filterValues.rentalPrice !== 0) {
+        filteredArray = filteredArray.filter(
+          item =>
+            parseInt(item.rentalPrice.replace(/\D/g, ''), 10) <=
+            filterValues.rentalPrice
+        );
+      }
+      if (filterValues.minMileage !== 0) {
+        filteredArray = filteredArray.filter(
+          item => item.mileage >= filterValues.minMileage
+        );
+      }
+      if (filterValues.maxMileage !== 0) {
+        filteredArray = filteredArray.filter(
+          item => item.mileage <= filterValues.maxMileage
+        );
+      }
     }
 
     setCatalog(filteredArray);
@@ -83,7 +91,9 @@ function App() {
     setModalShow(!modalShow);
   };
 
-  return (
+  return loader ? (
+    <Loader />
+  ) : (
     <>
       <Routes>
         <Route path="/" element={<Layout />}>
