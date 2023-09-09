@@ -71,9 +71,9 @@ function App() {
     setVisibleItems(8);
   };
 
-  useEffect(() => {
-    filter();
-  }, [filterValues, filter]);
+  // useEffect(() => {
+  //   filter();
+  // }, [filterValues, filter]);
 
   const loadMoreItems = () => {
     setVisibleItems(visibleItems + 8);
